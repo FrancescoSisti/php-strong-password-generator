@@ -17,7 +17,7 @@
         $dictionary = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]|:;,.?/~';
         $password = '';
         for ($i = 0; $i < $length; $i++) {
-            $password = $dictionary[rand(0, strlen($dictionary) - 1)];
+            $password .= $dictionary[rand(0, strlen($dictionary) - 1)];
         }
         return $password;
     }
