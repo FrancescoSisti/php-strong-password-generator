@@ -1,3 +1,10 @@
+<?php
+include __DIR__ . '/components/functions.php';
+
+$length = getPasswordLength();
+$password = generatePasswordIfValid($length);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,24 +18,6 @@
 </head>
 
 <body>
-    <?php
-    function generatePassword($length)
-    {
-        $dictionary = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]|:;,.?/~';
-        $password = '';
-        for ($i = 0; $i < $length; $i++) {
-            $password .= $dictionary[rand(0, strlen($dictionary) - 1)];
-        }
-        return $password;
-    }
-
-    $password = '';
-    $length = isset($_GET['length']) ? intval($_GET['length']) : 0;
-    if ($length > 0) {
-        $password = generatePassword($length);
-    }
-    ?>
-
     <div class="container mt-5">
         <h1 class="text-center mb-4">Strong Password Generator</h1>
 
@@ -42,7 +31,7 @@
 
         <?php if ($password): ?>
             <div class="alert alert-success">
-                <h2 class="mb-0">Password generata: <?php echo $password; ?></h2>
+                <h2 class="mb-0">Password generata: <?php echo htmlspecialchars($password); ?></h2>
             </div>
         <?php endif; ?>
     </div>
